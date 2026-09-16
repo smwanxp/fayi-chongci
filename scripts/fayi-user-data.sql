@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS fayi_user_data (
+  id BIGSERIAL PRIMARY KEY,
+  owner_user_id VARCHAR(128) NOT NULL UNIQUE,
+  payload JSONB NOT NULL,
+  content_revision INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS fayi_user_data_updated_at_idx
+  ON fayi_user_data (updated_at DESC);
